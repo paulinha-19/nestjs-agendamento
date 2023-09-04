@@ -8,7 +8,6 @@ import { encodePassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class UsersService {
-
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -20,7 +19,7 @@ export class UsersService {
 
     if (cpfExists || emailExists || userNameExists) {
       throw new BadRequestException(
-        `O username: ${username} e/ou email: ${email} e/ou cpf: ${cpf} já existe no banco de dados.`
+        `O username: ${username} e/ou email: ${email} e/ou cpf: ${cpf} já existe no banco de dados.`,
       );
     }
 
@@ -42,27 +41,29 @@ export class UsersService {
     return this.userModel.findById(id);
   }
 
-  findUserByUsername(username: string){
-    return this.userModel.findOne({ username })
+  findUserByUsername(username: string) {
+    return this.userModel.findOne({ username });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findByIdAndUpdate({
-      _id: id
-    },
-    {
-      updateUserDto,
-    },
-    {
-      new: true,
-    },
+    return this.userModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        updateUserDto,
+      },
+      {
+        new: true,
+      },
     );
   }
 
   remove(id: string) {
-    return this.userModel.deleteOne({
-      _id: id,
-    })
-    .exec();
+    return this.userModel
+      .deleteOne({
+        _id: id,
+      })
+      .exec();
   }
 }
