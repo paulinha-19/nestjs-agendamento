@@ -4,17 +4,19 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     UsersModule,
-    ConfigModule.forRoot(), 
+    AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule,
     MongooseModule.forRoot(process.env.DATABASE_PASSWORD),
-    AuthModule],
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

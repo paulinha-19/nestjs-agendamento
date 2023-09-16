@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "d013ae7a-03cc-4def-8e1e-a10c9f6a296a",
+		"name": "Backend ACME",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25477242"
+	},
+	"item": [
+		{
+			"name": "List Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/64de55946486089dbbc2950e",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"64de55946486089dbbc2950e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
