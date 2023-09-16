@@ -1,23 +1,28 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { IsEmail, IsNotEmpty } from 'class-validator';
+import { PrimaryGeneratedColumn } from 'typeorm';
 
 export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
+  @PrimaryGeneratedColumn("uuid")
+  id: number;
+
   @Prop()
   name: string;
 
   @Prop()
   username: string;
 
-  @Prop()
+  @IsEmail()
   email: string;
 
-  @Prop()
+  @IsNotEmpty()
   password: string;
 
-  @Prop()
+  @IsNotEmpty()
   cpf: string;
 
   @Prop()

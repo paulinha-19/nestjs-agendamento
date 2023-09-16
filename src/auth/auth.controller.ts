@@ -7,8 +7,9 @@ import {
   UseGuards,
   Request,
   Get,
+  Param,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService, IResponseSingIn } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { Roles } from './roles/role.decorator';
 import { RolesGuard } from './roles/roles.guard';
@@ -26,7 +27,7 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard, RolesGuard)
-  @Roles('patient', 'admin')
+  @Roles('patient', 'admin', 'doctor')
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
